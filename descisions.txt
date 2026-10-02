@@ -1,0 +1,7 @@
+decided on using PYgame over Raylib.
+
+Will keep a file stucture 
+game state file
+renderer file
+window?
+main
