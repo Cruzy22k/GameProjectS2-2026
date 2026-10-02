@@ -17,13 +17,13 @@ class Window:
         return self.clock.tick(fps)/1000 # weird pygame ticker division
 
     def clear(self):
-        self.screen.fill((10,10,15))
+        self.screen.fill((10, 10, 15))
 
     def flip(self):
         pygame.display.flip()
     def poll_quit(self):
         for x in pygame.event.get():
-            if x == pygame.quit():
+            if x.type == pygame.quit():
                 return True
         return False
     def exit(self):
