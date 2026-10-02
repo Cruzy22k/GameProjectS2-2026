@@ -19,7 +19,13 @@ class Window:
     def clear(self):
         self.screen.fill((10,10,15))
 
-
+    def flip(self):
+        pygame.display.flip()
+    def poll_quit(self):
+        for x in pygame.event.get():
+            if x == pygame.quit():
+                return True
+        return False
 
     def exit(self):
         pygame.quit()
