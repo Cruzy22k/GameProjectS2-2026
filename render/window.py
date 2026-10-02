@@ -26,6 +26,5 @@ class Window:
             if x == pygame.quit():
                 return True
         return False
-
     def exit(self):
         pygame.quit()
