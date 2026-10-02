@@ -23,7 +23,7 @@ class Window:
         pygame.display.flip()
     def poll_quit(self):
         for x in pygame.event.get():
-            if x.type == pygame.quit():
+            if x.type == pygame.QUIT:
                 return True
         return False
     def exit(self):
