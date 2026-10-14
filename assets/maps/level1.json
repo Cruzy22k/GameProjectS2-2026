@@ -1,0 +1,31 @@
+{
+  "start_room": "a", "start_x": 400, "start_y": 300,
+  "rooms": {
+    "a": {
+      "background": "assets/images/room_a.png",
+      "walls": [
+        {"x": 0, "y": 0, "w": 800, "h": 20},
+        {"x": 0, "y": 580, "w": 800, "h": 20},
+        {"x": 0, "y": 0, "w": 20, "h": 600},
+        {"x": 780, "y": 0, "w": 20, "h": 260},
+        {"x": 780, "y": 340, "w": 20, "h": 260}
+      ],
+      "hotspots": [
+        {"x": 780, "y": 260, "w": 20, "h": 80, "type": "door", "target_room": "b", "target_x": 40, "target_y": 300}
+      ]
+    },
+    "b": {
+      "background": "assets/images/room_b.png",
+      "walls": [
+        {"x": 0, "y": 0, "w": 800, "h": 20},
+        {"x": 0, "y": 580, "w": 800, "h": 20},
+        {"x": 780, "y": 0, "w": 20, "h": 600},
+        {"x": 0, "y": 0, "w": 20, "h": 260},
+        {"x": 0, "y": 340, "w": 20, "h": 260}
+      ],
+      "hotspots": [
+        {"x": 0, "y": 260, "w": 20, "h": 80, "type": "door", "target_room": "a", "target_x": 740, "target_y": 300}
+      ]
+    }
+  }
+}
