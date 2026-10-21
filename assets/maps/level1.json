@@ -7,7 +7,7 @@
   },
   "rooms": {
     "a": {
-      "background": "assets/images/room_a_1080p3.png",
+      "background": "assets/images/room_a_1920x1080.png",
       "walls": [
         [36, 612, 504, 432],
         [1404, 612, 468, 432],
