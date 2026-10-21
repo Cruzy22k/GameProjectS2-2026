@@ -1,34 +1,40 @@
 {
-  "room_size": [800, 600],
-  "wall_thickness": 20,
+  "room_size": [1920, 1080],
+  "wall_thickness": 36,
   "start": {
     "room": "a",
-    "position": [400, 300]
+    "position": [960, 540]
   },
   "rooms": {
     "a": {
-      "background": "assets/images/room_a.png",
-      "walls": [],
+      "background": "assets/images/room_a_1080p.png",
+      "walls": [
+      [800, 0, 1120, 380],   
+      [0, 250, 450, 450],    
+      [450, 250, 450, 300],  
+      [0, 750, 600, 330]     
+    ],
       "doors": [
         {
           "side": "right",
-          "at": 300,
-          "size": 80,
+          "at": 540,
+          "size": 144,
           "to": "b",
-          "spawn": [40, 300]
+          "spawn": [72, 540]
         }
       ]
     },
     "b": {
-      "background": "assets/images/room_b.png",
+      "background": "assets/images/room_b_1080p.png",
+      "irradiated": true,
       "walls": [],
       "doors": [
         {
           "side": "left",
-          "at": 300,
-          "size": 80,
+          "at": 540,
+          "size": 144,
           "to": "a",
-          "spawn": [740, 300]
+          "spawn": [1776, 540]
         }
       ]
     }

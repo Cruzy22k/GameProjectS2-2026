@@ -3,7 +3,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
 MAP_PATH = ROOT / "assets" / "maps" / "level1.json"
-WALL_THICKNESS = 20
+DEFAULT_WALL_THICKNESS = 36
 
 
 def edge_rectangle(side, start, end, room_width, room_height, thickness):
@@ -77,7 +77,7 @@ def load_map(path=MAP_PATH):
         data = json.load(map_file)
 
     room_width, room_height = data["room_size"]
-    wall_thickness = data.get("wall_thickness", WALL_THICKNESS)
+    wall_thickness = data.get("wall_thickness", DEFAULT_WALL_THICKNESS)
     rooms = {}
 
     for room_id, room_data in data["rooms"].items():
@@ -148,6 +148,7 @@ def load_map(path=MAP_PATH):
             "background": room_data["background"],
             "walls": walls,
             "hotspots": hotspots,
+            "irradiated": room_data.get("irradiated", False),
         }
 
     start = data["start"]

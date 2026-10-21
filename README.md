@@ -23,7 +23,7 @@ Clean zones are explorable at your own pace. Irradiated zones demand a mask or s
 Mobs.
 rodents, deer and wild pigs, (all slightly affected by the radioation, think extra eyes or secondary limbs)
 
-The Stalke is something that lives deep in the radiation. It doesn’t chase you through the whole map, it only exists where the fallout is worst, and it hunts by darkness and proximity. Get close in the dark without your torch and it attacks. torches have batteries that deplete, torch, your mask, your radiation exposure, all finite, all competing for attention while you try to investigate
+The Stalker is something that lives deep in the radiation. It doesn’t chase you through the whole map, it only exists where the fallout is worst, and it hunts by darkness and proximity. Get close in the dark without your torch and it attacks. torches have batteries that deplete, torch, your mask, your radiation exposure, all finite, all competing for attention while you try to investigate
 
 there will be multiple ways to die.
 
@@ -49,8 +49,10 @@ the map JSON and builds the room walls.
 
 ## Making rooms and maps
 
-Edit `assets/maps/level1.json`. A map has one shared `room_size`, a wall
-thickness, a starting room and player position, then a list of rooms. Room
+Edit `assets/maps/level1.json`. The current game and map use a 1920×1080
+play area. A map has one shared `room_size`, a wall
+thickness, a starting room and player position, then a list of rooms. The
+`wall_thickness` value controls how thick the room borders are. Room
 borders are added automatically, so you only need to list walls inside a room.
 Each inside wall is `[x, y, width, height]`.
 
@@ -63,3 +65,14 @@ Add a door to each room to make a two-way connection.
 Rooms can also have optional clickable `hotspots`. Give one an `area` in
 `[x, y, width, height]` form and `"type": "interact"`; additional fields such
 as `"id": "mask"` are returned by the interaction helper.
+
+Rooms can be marked as irradiated with `"irradiated": true`. Exposure rises
+while the player is in one; rooms without this setting are treated as safe.
+
+## Customizing gameplay
+
+The top of `main.py` contains display settings, control-key bindings, drawing
+colors, HUD styling, and the player's starting radiation exposure. The top of
+`game.py` contains player movement and radiation settings. Map geometry and
+room-specific settings belong in `assets/maps/level1.json`; `map_loader.py`
+contains the default wall thickness used when a map does not specify one.

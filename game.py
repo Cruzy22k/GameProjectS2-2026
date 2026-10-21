@@ -1,5 +1,15 @@
+# player specific globals
+
 PLAYER_SIZE = 32
-PLAYER_SPEED = 400
+PLAYER_SPEED = 800
+RADIATION_MAX = 100
+RADIATION_PER_SECOND = 10
+
+def update_radiation(exposure, delta_time, in_radiated_zone, protected=False): # protected for mask
+    if not in_radiated_zone or protected:
+        return exposure
+    return min(exposure + RADIATION_PER_SECOND * delta_time, RADIATION_MAX)
+    # if over, min will just return 100 instead yay
 
 
 def rectangles_overlap(first, second):
