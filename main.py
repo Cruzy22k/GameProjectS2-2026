@@ -70,7 +70,7 @@ def draw_room(screen, room, player, background_cache):
     
     player_box = (player["x"], player["y"], player["width"], player["height"])
     pygame.draw.rect(screen, PLAYER_COLOR, player_box)
-    # draws on the screen and doesnt return a value
+    
 
 
 
@@ -98,7 +98,6 @@ def main():
                     running = False
                 elif event.type == pygame.MOUSEBUTTONDOWN:
                     interact_at(rooms[room_id], event.pos[0], event.pos[1])
-                # Add this KEYDOWN block to catch F1 presses
                 elif event.type == pygame.KEYDOWN:
                     if event.key == SNEAKYDEV_TOGGLE:
                         dev_mode = not dev_mode
