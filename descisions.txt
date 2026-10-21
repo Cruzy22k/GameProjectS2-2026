@@ -1,7 +1,5 @@
-decided on using PYgame over Raylib.
+Using Pygame instead of Raylib.
 
-Will keep a file stucture 
-game state file
-renderer file
-window?
-main
+The prototype keeps its gameplay and drawing code together in main.py so it is
+easy to follow while the game is small. Maps stay in JSON, with room borders
+and door openings generated from the room and door settings.

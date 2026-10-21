@@ -38,3 +38,28 @@ Room-by-room discovery. maze of interconnected rooms and doors, built for explor
 Controls
 
 WASD, Mouse for interact X for don/remove radiation mask or suit, Z for radio, F for flashlight, E for Unknown, esc for pause.
+
+## Running the prototype
+
+Install Pygame, then run `python main.py` from the project folder.
+
+The code is split into three main files: `main.py` runs the game and draws it,
+`game.py` handles movement, collisions, and doors, and `map_loader.py` reads
+the map JSON and builds the room walls.
+
+## Making rooms and maps
+
+Edit `assets/maps/level1.json`. A map has one shared `room_size`, a wall
+thickness, a starting room and player position, then a list of rooms. Room
+borders are added automatically, so you only need to list walls inside a room.
+Each inside wall is `[x, y, width, height]`.
+
+Doors are described by the side they are on, the center position along that
+side (`at`), and the opening `size`. For top and bottom doors, `at` is an x
+coordinate; for left and right doors, it is a y coordinate. `to` names the
+connected room, and `spawn` is the player's `[x, y]` position after entering.
+Add a door to each room to make a two-way connection.
+
+Rooms can also have optional clickable `hotspots`. Give one an `area` in
+`[x, y, width, height]` form and `"type": "interact"`; additional fields such
+as `"id": "mask"` are returned by the interaction helper.
