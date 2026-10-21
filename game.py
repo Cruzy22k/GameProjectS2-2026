@@ -1,3 +1,5 @@
+import math
+
 # player specific globals
 
 PLAYER_SIZE = 32
@@ -63,18 +65,30 @@ def room_collides(room, rectangle):
 def move_player(player, direction_x, direction_y, delta_time, room):
     # moves the player and stops them going through walls
     # delta time keeps movement speed steady even if the frame rate changes
+    direction_length = math.hypot(direction_x, direction_y)
+    if direction_length:
+        direction_x /= direction_length
+        direction_y /= direction_length
+
     move_x = direction_x * player["speed"] * delta_time
     move_y = direction_y * player["speed"] * delta_time
 
-    # check each direction on its own so the player can slide along walls
-    next_x = player["x"] + move_x
-    if not room_collides(room, player_rectangle(player, x=next_x)):
-        player["x"] = next_x
+    # small steps stop a fast frame from jumping through a thin wall
+    steps = math.ceil(max(abs(move_x), abs(move_y)))
+    if steps == 0:
+        return
 
-    next_y = player["y"] + move_y
-    if not room_collides(room, player_rectangle(player, y=next_y)):
-        player["y"] = next_y
-    # changes the player position and doesnt return anything
+    step_x = move_x / steps
+    step_y = move_y / steps
+    for _ in range(steps):
+        next_x = player["x"] + step_x
+        if not room_collides(room, player_rectangle(player, x=next_x)):
+            player["x"] = next_x
+
+        next_y = player["y"] + step_y
+        if not room_collides(room, player_rectangle(player, y=next_y)):
+            player["y"] = next_y
+    
 
 
 def enter_door(rooms, room_id, player):

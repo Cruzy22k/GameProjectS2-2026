@@ -1,4 +1,5 @@
 import unittest
+import math
 # idk what tests are tbh
 from game import enter_door, make_player, move_player, update_radiation
 from map_loader import load_map
@@ -26,10 +27,29 @@ class GameTests(unittest.TestCase):
 
     def test_door_switches_rooms_and_places_player_at_spawn(self):
         rooms, _, _ = load_map()
-        player = make_player((1840, 500))
+        player = make_player((1860, 500))
         room_id = enter_door(rooms, "a", player)
         self.assertEqual(room_id, "b")
         self.assertEqual((player["x"], player["y"]), (72, 540))
+
+    def test_diagonal_movement_does_not_add_speed(self):
+        player = make_player((500, 500))
+        player["speed"] = 100
+        move_player(player, 1, 1, 1, {"walls": []})
+
+        distance_x = player["x"] - 500
+        distance_y = player["y"] - 500
+        self.assertAlmostEqual(math.hypot(distance_x, distance_y), 100)
+
+    def test_player_stops_at_wall_and_slides_along_it(self):
+        player = make_player((0, 20))
+        player["speed"] = 100
+        room = {"walls": [(50, 0, 10, 100)]}
+        move_player(player, 1, 1, 1, room)
+
+        self.assertLessEqual(player["x"], 18)
+        self.assertGreater(player["x"], 17)
+        self.assertGreater(player["y"], 20)
 
     def test_radiation_increases_over_time_in_exposed_zone(self):
         exposure = update_radiation(0, 2, in_radiated_zone=True)

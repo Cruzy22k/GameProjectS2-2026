@@ -14,13 +14,14 @@ WINDOW_WIDTH = 1920
 WINDOW_HEIGHT = 1080
 WINDOW_TITLE = "til I die!"
 FPS = 60
+MAX_FRAME_TIME = 0.05
 
 #controls
 MOVE_RIGHT_KEY = pygame.K_d
 MOVE_LEFT_KEY = pygame.K_a
 MOVE_DOWN_KEY = pygame.K_s
 MOVE_UP_KEY = pygame.K_w
-SNEAKYDEV_TOGGLE =pygame.K_F1
+SNEAKYDEV_TOGGLE =pygame.K_EQUALS
 
 #color
 BACKGROUND_COLOR = (10, 10, 15)
@@ -91,7 +92,7 @@ def main():
     running = True
     try:
         while running:
-            delta_time = clock.tick(FPS) / 1000 # needs expanation
+            delta_time = min(clock.tick(FPS) / 1000, MAX_FRAME_TIME)
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     running = False
